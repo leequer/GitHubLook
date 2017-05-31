@@ -4,30 +4,30 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 import HomePage from './js/pages/HomePage.js';
-import NavigationBar from './js/Component/NavigationBar.js';
+
 export default class GithubLook extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <NavigationBar/>
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                <HomePage/>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+    container: {
+        flex: 1,
 
-  },
+    },
 
 });
 

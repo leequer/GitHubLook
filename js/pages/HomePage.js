@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
+import NavigationBar from '../../js/Component/NavigationBar.js';
 
 export default class GithubLook extends Component {
     constructor(props){
@@ -39,7 +40,9 @@ export default class GithubLook extends Component {
                         }>
 
                         {/*选项卡对应的页面*/}
-                        <View style={{flex:1,backgroundColor:'#f00'}}/>
+                        <View style={{flex:1}}>
+                            <NavigationBar/>
+                        </View>
                     </TabNavigator.Item>
 
                     <TabNavigator.Item
