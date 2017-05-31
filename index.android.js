@@ -12,11 +12,12 @@ import {
   View
 } from 'react-native';
 import HomePage from './js/pages/HomePage.js';
+import NavigationBar from './js/Component/NavigationBar.js';
 export default class GithubLook extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <HomePage/>
+        <NavigationBar/>
       </View>
     );
   }
