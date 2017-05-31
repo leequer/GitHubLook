@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
 
     },
     BarText: {
-        fontSize: 16,
+        fontSize: 18,
+        color:'#FFF'
     },
     navigationBar: {
         flexDirection: 'row',
@@ -74,8 +75,8 @@ const styles = StyleSheet.create({
 
     },
     icon: {
-        width: 28,
-        height: 28,
+        width: 24,
+        height: 24,
     }
 
 });
