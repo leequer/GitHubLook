@@ -32,7 +32,8 @@ export default class PopularPage extends Component {
                 >
                     {
                         this.status.languages.map((item,i)=>{
-                            return <PopularTab tabLabel={item} key={i}/>
+
+                            return <PopularTab tabLabel={item} key={`tab${i}`}/>
                         })
                     }
 
@@ -43,12 +44,15 @@ export default class PopularPage extends Component {
     }
 }
 class PopularTab extends Component{
+    static defaultProps={
+        tabLabel : "ios"
+    }
     constructor(props){
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-            dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+        this.state={
+            dataSource : new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2})
         };
+
     }
     render() {
         return (
@@ -58,6 +62,19 @@ class PopularTab extends Component{
             />
         );
     }
+    componentDidMount = () =>{
+        this.loadData();
+    }
+    loadData = ()=>{
+        //fetch(`https://api.github.com/search/repositories?q=${this.props.tabLabel}&sort=stars`)
+        //this.state.dataSource.cloneWithRows(['row 1', 'row 2']);
+       // this.state.dataSource= ds.cloneWithRows();
+        this.setState({
+            dataSource:this.state.dataSource.cloneWithRows(['row 1', 'row 2'])
+        });
+
+    }
+
 }
 const styles = StyleSheet.create({
     container: {
