@@ -31,7 +31,7 @@ export default class PopularPage extends Component {
                 >
                     {
                         this.status.languages.map((item,i)=>{
-                            return <Text tabLabel={item}/>
+                            return <Text tabLabel={item} key={i}/>
                         })
                     }
 
