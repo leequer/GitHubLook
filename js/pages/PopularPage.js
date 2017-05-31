@@ -45,6 +45,7 @@ export default class PopularPage extends Component {
 }
 class PopularTab extends Component{
     static defaultProps={
+        //这个tabLabel 是<PopularTab tabLabel={item} key={`tab${i}`}/> 这个tablabel这个属性 相当于自定义属性
         tabLabel : "ios"
     }
     constructor(props){
@@ -69,6 +70,7 @@ class PopularTab extends Component{
         //fetch(`https://api.github.com/search/repositories?q=${this.props.tabLabel}&sort=stars`)
         //this.state.dataSource.cloneWithRows(['row 1', 'row 2']);
        // this.state.dataSource= ds.cloneWithRows();
+        //给listview 添加值
         this.setState({
             dataSource:this.state.dataSource.cloneWithRows(['row 1', 'row 2'])
         });
