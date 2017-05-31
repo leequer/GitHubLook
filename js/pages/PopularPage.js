@@ -12,6 +12,13 @@ import {
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 export default class PopularPage extends Component {
+    constructor(props){
+        super(props);
+        this.status = {
+            languages : ['java','ios','react','js']
+        };
+
+    }
     render(){
         return (
             <View style={styles.container}>
@@ -22,10 +29,13 @@ export default class PopularPage extends Component {
                     tabBarInactiveTextColor="#F5FFFA"
                     tabBarUnderlineStyle={[{backgroundColor:'#E7E7E7'},{height:2}]}
                 >
-                    <Text tabLabel='IOS'/>
-                    <Text tabLabel='Android'/>
-                    <Text tabLabel='Java'/>
-                    <Text tabLabel='JavaScript'/>
+                    {
+                        this.status.languages.map((item,i)=>{
+                            return <Text tabLabel={item}/>
+                        })
+                    }
+
+
                 </ScrollableTabView>
             </View>
         )
