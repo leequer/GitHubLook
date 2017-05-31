@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
-import NavigationBar from '../../js/Component/NavigationBar.js';
+import PopularPage from '../../js/pages/PopularPage.js';
 
 export default class GithubLook extends Component {
     constructor(props){
@@ -41,7 +41,7 @@ export default class GithubLook extends Component {
 
                         {/*选项卡对应的页面*/}
                         <View style={{flex:1}}>
-                            <NavigationBar/>
+                            <PopularPage/>
                         </View>
                     </TabNavigator.Item>
 
