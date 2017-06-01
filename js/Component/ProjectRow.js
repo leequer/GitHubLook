@@ -34,7 +34,7 @@ export default class ProjectRow extends Component {
                 <View style={styles.bottomView}>
                     <View style={styles.avatarView}>
                         <Text>作者：</Text>
-                        <Image source={{url:item.owner.avatar_url}}  style={styles.icon}/>
+                        <Image source={{uri:item.owner.avatar_url}}  style={styles.icon}/>
                     </View>
                     <View style={styles.startView}>
                         <Text>Starts:</Text>

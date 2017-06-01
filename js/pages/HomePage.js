@@ -56,7 +56,7 @@ export default class GithubLook extends Component {
                         renderSelectedIcon={
                         ()=> <Image style={[styles.icon,{tintColor:'#63b8ff'}]} source={require('../../res/images/ic_trending.png')}/>
                         }>
-                        <View style={{flex:1,backgroundColor:'#0f0'}}/>
+                        <Image source={{uri:'https://img3.doubanio.com/view/movie_poster_cover/mpst/public/p2263582212.jpg'}}  style={{height:100,width:100}} />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         title="收藏"
