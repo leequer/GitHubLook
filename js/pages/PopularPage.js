@@ -67,7 +67,23 @@ class PopularTab extends Component{
         this.loadData();
     }
     loadData = ()=>{
-        //fetch(`https://api.github.com/search/repositories?q=${this.props.tabLabel}&sort=stars`)
+        /**
+         * fetch 请求回来的数据 传给了then 方法的response 参数，然后通过json（）方法转为json
+         *   .then((response)=>{return response.json()})
+         * 接着调用then方法，把转好的json作为参数
+         *   .then((json)=>{})
+         *
+         * 注意写法
+         （response）=》response.json()  如果没有大括号 就会直接返回结果
+         （response）=》{return response.json()}  如果有大括号 就要写return
+         *
+         *
+         */
+        fetch(`https://api.github.com/search/repositories?q=${this.props.tabLabel}&sort=stars`)
+            .then((response)=>{return response.json()})
+            .then((json)=>{
+                console.log(json)
+            })
         //this.state.dataSource.cloneWithRows(['row 1', 'row 2']);
        // this.state.dataSource= ds.cloneWithRows();
         //给listview 添加值
