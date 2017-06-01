@@ -117,6 +117,7 @@ class PopularTab extends Component{
                 console.log(error)
             })
             .done(()=>{
+                //调用了this.setState 界面就会重新绘制 就会刷新   牢记
                 this.setState({isRefreshing:false})
             })
 
