@@ -11,6 +11,7 @@ import {
     ListView
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
+import ProjectRow from '../../js/Component/ProjectRow.js';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 export default class PopularPage extends Component {
     constructor(props){
@@ -56,10 +57,11 @@ class PopularTab extends Component{
 
     }
     render() {
+
         return (
             <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(rowData) => <Text>{rowData.full_name}</Text>}
+                renderRow={(rowData) => <ProjectRow item ={rowData}/>}
             />
         );
     }
