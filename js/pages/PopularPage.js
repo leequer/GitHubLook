@@ -70,25 +70,20 @@ class PopularTab extends Component{
                     <RefreshControl
                         refreshing={this.state.isRefreshing}
                         onRefresh={this.handleRefresh}
-                        tintColor="#ff0000"
+                        tintColor="#63B8FF"
                         title="Loading..."
-                        titleColor="#00ff00"
-                        colors={['#ff0000', '#00ff00', '#0000ff']}
-                        progressBackgroundColor="#ffff00"
+                        titleColor="#63B8FF"
+                        colors={['#63B8FF']}
                     />
                 }
             />
         );
     }
+    //下拉刷新调用方法 刷新时 加载请求数据
     handleRefresh=()=>{
-
+        this.loadData();
     }
-    loading=()=>{
-        setInterval(()=>{
 
-            console.log("2second----")
-        },2000)
-    }
     componentDidMount = () =>{
         this.loadData();
     }
