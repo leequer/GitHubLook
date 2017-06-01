@@ -8,7 +8,8 @@ import {
     Text,
     View,
     Image,
-    ListView
+    ListView,
+    RefreshControl
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
@@ -31,6 +32,8 @@ export default class PopularPage extends Component {
                     tabBarInactiveTextColor="#F5FFFA"
                     tabBarUnderlineStyle={[{backgroundColor:'#E7E7E7'},{height:2}]}
                 >
+
+
                     {
                         this.status.languages.map((item,i)=>{
 
@@ -52,7 +55,8 @@ class PopularTab extends Component{
     constructor(props){
         super(props);
         this.state={
-            dataSource : new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2})
+            dataSource : new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2}),
+            isRefreshing:true
         };
 
     }
@@ -62,8 +66,28 @@ class PopularTab extends Component{
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={(rowData) => <ProjectRow item ={rowData}/>}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.isRefreshing}
+                        onRefresh={this.handleRefresh}
+                        tintColor="#ff0000"
+                        title="Loading..."
+                        titleColor="#00ff00"
+                        colors={['#ff0000', '#00ff00', '#0000ff']}
+                        progressBackgroundColor="#ffff00"
+                    />
+                }
             />
         );
+    }
+    handleRefresh=()=>{
+
+    }
+    loading=()=>{
+        setInterval(()=>{
+
+            console.log("2second----")
+        },2000)
     }
     componentDidMount = () =>{
         this.loadData();
@@ -89,7 +113,10 @@ class PopularTab extends Component{
                     dataSource:this.state.dataSource.cloneWithRows(json.items)
                 });
             })
-            .done()
+            .done(()=>{
+                this.setState({isRefreshing:false})
+            })
+
 
 
     }
