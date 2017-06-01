@@ -59,7 +59,7 @@ class PopularTab extends Component{
         return (
             <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(rowData) => <Text>{rowData}</Text>}
+                renderRow={(rowData) => <Text>{rowData.full_name}</Text>}
             />
         );
     }
@@ -82,14 +82,12 @@ class PopularTab extends Component{
         fetch(`https://api.github.com/search/repositories?q=${this.props.tabLabel}&sort=stars`)
             .then((response)=>{return response.json()})
             .then((json)=>{
-                console.log(json)
+                //调用this.setState 就会重新给listview值 同时listview调用render方法刷新
+                this.setState({
+                    dataSource:this.state.dataSource.cloneWithRows(json.items)
+                });
             })
-        //this.state.dataSource.cloneWithRows(['row 1', 'row 2']);
-       // this.state.dataSource= ds.cloneWithRows();
-        //给listview 添加值
-        this.setState({
-            dataSource:this.state.dataSource.cloneWithRows(['row 1', 'row 2'])
-        });
+
 
     }
 
