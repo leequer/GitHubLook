@@ -14,6 +14,12 @@ import {
     Platform
 } from 'react-native';
 export default class ProjectRow extends Component {
+    /**
+     * 在popularpage.js中的设置list中的item的每一项中的
+     * renderRow={(rowData) => <ProjectRow item ={rowData}/>}
+     * 这个item 就是 这个ProjectRow中的自定义属性 item 就在这里写 写成这样
+     * @type {{item: {}}}
+     */
     static defaultProps ={
         item :{}
     }
