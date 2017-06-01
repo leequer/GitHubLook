@@ -113,6 +113,9 @@ class PopularTab extends Component{
                     dataSource:this.state.dataSource.cloneWithRows(json.items)
                 });
             })
+            .catch((error)=>{
+                console.log(error)
+            })
             .done(()=>{
                 this.setState({isRefreshing:false})
             })
