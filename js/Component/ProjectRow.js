@@ -26,6 +26,7 @@ export default class ProjectRow extends Component {
 
     render() {
         var item = this.props.item;
+        var avatar_url = item.owner.avatar_url;
         return (
             <View style={styles.container}>
                 <Text style={styles.nameSytle}>{item.name}</Text>
@@ -33,7 +34,7 @@ export default class ProjectRow extends Component {
                 <View style={styles.bottomView}>
                     <View style={styles.avatarView}>
                         <Text>作者：</Text>
-                        <Image source={{url: item.owner.avatar_url}} style={[{height: 20}, {width: 20}]}/>
+                        <Image source={{url:item.owner.avatar_url}}  style={styles.icon}/>
                     </View>
                     <View style={styles.startView}>
                         <Text>Starts:</Text>
@@ -51,8 +52,24 @@ export default class ProjectRow extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:'#FFF',
         marginLeft:10,
-        padding:5
+        padding:5,
+        marginLeft:5,
+        marginRight:5,
+        marginVertical:5,
+        borderColor:'#DDDDDD',
+        borderWidth:0.5,
+        borderRadius:5,//圆角
+        shadowColor:'#CCC',//阴影颜色
+        shadowOffset:{width:0.5,height:0.5},
+        shadowRadius:5,//模糊半径
+        shadowOpacity:0.4,//阴影透明度
+        elevation:1//android阴影效果
+    },
+    icon:{
+        width:25,
+        height:25
     },
     nameSytle: {
         marginBottom:5,
@@ -61,14 +78,12 @@ const styles = StyleSheet.create({
     avatarView:{
         flexDirection: 'row',
         alignItems:'center',
-
     },
     startView:{
         flexDirection: 'row',
-        marginLeft:10
     },
     starView:{
-      marginRight:10
+
     },
     bottomView: {
         flexDirection: 'row',
