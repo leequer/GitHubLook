@@ -87,6 +87,7 @@ class PopularTab extends Component{
                     dataSource:this.state.dataSource.cloneWithRows(json.items)
                 });
             })
+            .done()
 
 
     }
