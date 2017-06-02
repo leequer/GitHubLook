@@ -74,5 +74,8 @@ const styles = StyleSheet.create({
         marginRight: 8,
 
     },
+    icon:{
+        height:24
+    }
 
 });
