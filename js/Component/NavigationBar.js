@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 50,
         right: 50,
-        bottom: 1,
+
         //中间文字居中-end
         //backgroundColor:'#f00'
 
@@ -68,7 +68,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between', //等分
         alignItems: 'center', //交叉轴
-        marginTop: 30
+        marginTop: 30,
+        //最小高度，如果传入的界面高与这个值，此属性就无效,就按照传入的控件的大小来显示
+        minHeight:24
     },
     navigationBarRihgt: {
         flexDirection: 'row',

@@ -27,7 +27,7 @@ export default class CustomKeyPage extends Component {
                 onPress={this.backOnClick}
                 activeOpacity={0.7}>
                 <Image source={require('../../res/images/ic_arrow_back_white_36pt.png')}
-                       style={{height: 30, width: 30}}/>
+                       style={{height: 24, width: 24}}/>
             </TouchableOpacity>
         </View>
     }
