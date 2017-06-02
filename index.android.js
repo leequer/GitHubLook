@@ -7,28 +7,9 @@
 import React, {Component} from 'react';
 import {
     AppRegistry,
-    StyleSheet,
-    Text,
-    View
+
 } from 'react-native';
-import HomePage from './js/pages/HomePage.js';
+import setup from './js/setup';
 
-export default class GithubLook extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <HomePage/>
-            </View>
-        );
-    }
-}
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-
-    },
-
-});
-
-AppRegistry.registerComponent('GithubLook', () => GithubLook);
+AppRegistry.registerComponent('GithubLook', () => setup);

@@ -16,7 +16,7 @@ import TabNavigator from 'react-native-tab-navigator';
 import PopularPage from '../../js/pages/PopularPage.js';
 import MyPage from "./MyPage";
 
-export default class GithubLook extends Component {
+export default class HomePage extends Component {
     constructor(props){
         super(props);
         this.state={
