@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import NavigationBar from "../Component/NavigationBar";
 /**
+ * 
  * 方法调用时候，什么时候带括号，什么时候不带括号？ 方法要立马执行 就带括号，需要等到点击或者其它事件触发后执行就不带括号
  */
 export default class CustomKeyPage extends Component {
