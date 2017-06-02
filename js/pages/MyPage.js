@@ -8,8 +8,8 @@ import {
     Text,
     View,
     Image,
-    ListView,
-    RefreshControl
+    TouchableOpacity,
+
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import CustomKeyPage from './CustomKeyPage';
@@ -24,9 +24,12 @@ export default class MyPage extends Component {
         return (
             <View style={styles.container}>
                 <NavigationBar title="我的"/>
+                <TouchableOpacity activeOpacity={0.7}
+                                  onPress={this.gotoCustumePage}>
                 <View style={styles.itemSytle}>
-                    <Text onPress={this.gotoCustumePage} style={{ marginLeft:10,backgroundColor:'#f00'}}>分类</Text>
+                    <Text  style={{ marginLeft:10}}>分类</Text>
                 </View>
+                </TouchableOpacity>
             </View>
         )
     }
