@@ -87,9 +87,11 @@ export default class HomePage extends Component {
                          把HomePage属性上的navigator对象，传递给MyPage
                          <MyPage navigator={this.props.navigator} c={this.props.c} d={this.props.d} />
                          HomePage props -> {name:'jack',age:10}
-                         MyPage  props -> {name:'jack',age:10} 属性全部copy
+                         MyPage  props -> {name:'jack',age:10}
+
+                         {...this.props} 属性全部copy
                          */}
-                        <MyPage {...this.props}/>
+                        <MyPage navigator={this.props.navigator} />
                     </TabNavigator.Item>
                 </TabNavigator>
             </View>

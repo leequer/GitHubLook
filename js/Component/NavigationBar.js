@@ -26,7 +26,9 @@ export default class NavigationBar extends Component {
                 <StatusBar hidden={Platform.OS === 'ios' ? false : true}
                            barStyle={Platform.OS === 'ios' ? 'light-content' : null}/>
                 <View style={styles.navigationBar}>
-                    <View style={styles.icon}/>
+                    <View style={styles.leftViewStyle}>
+                        {this.props.leftButton}
+                    </View>
                     <View style={styles.navigationBarText}>
                         <Text style={styles.BarText}>{title}</Text>
                     </View>
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
 
     },
-    icon:{
+    leftViewStyle:{
         height:24
     }
 
