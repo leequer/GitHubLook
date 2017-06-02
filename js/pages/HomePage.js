@@ -14,6 +14,7 @@ import {
 
 import TabNavigator from 'react-native-tab-navigator';
 import PopularPage from '../../js/pages/PopularPage.js';
+import MyPage from "./MyPage";
 
 export default class GithubLook extends Component {
     constructor(props){
@@ -82,7 +83,7 @@ export default class GithubLook extends Component {
                         renderSelectedIcon={
                             ()=> <Image style={[styles.icon,{tintColor:'#63b8ff'}]} source={require('../../res/images/ic_my.png')}/>
                         }>
-                        <View style={{flex:1,backgroundColor:'#0f0'}}/>
+                        <MyPage/>
                     </TabNavigator.Item>
                 </TabNavigator>
             </View>

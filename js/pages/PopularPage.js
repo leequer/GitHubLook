@@ -9,7 +9,8 @@ import {
     View,
     Image,
     ListView,
-    RefreshControl
+    RefreshControl,
+    TouchableOpacity
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
@@ -22,10 +23,26 @@ export default class PopularPage extends Component {
         };
 
     }
+
+    rightView=()=>{
+        return    <View style={styles.navigationBarRihgt}>
+            <TouchableOpacity activeOpacity={0.7}>
+                <Image style={styles.icon}
+                       source={require('../../res/images/ic_search_white_48pt.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7}>
+                <Image style={styles.icon}
+                       source={require('../../res/images/ic_more_vert_white_48pt.png')}/>
+            </TouchableOpacity>
+        </View>
+
+    }
     render(){
         return (
             <View style={styles.container}>
-                <NavigationBar/>
+                <NavigationBar title="最热"
+                               rightButton={this.rightView()}/>
+
                 <ScrollableTabView
                     tabBarBackgroundColor="#63b8ff"
                     tabBarActiveTextColor="#FFF"
@@ -127,4 +144,13 @@ const styles = StyleSheet.create({
 
     },
 
+    icon: {
+        width: 24,
+        height: 24,
+    },
+    navigationBarRihgt:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginRight: 8,
+    }
 });
