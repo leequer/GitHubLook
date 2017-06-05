@@ -9,7 +9,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    AsyncStorage
+    AsyncStorage,
+    Alert
 } from 'react-native';
 import NavigationBar from "../Component/NavigationBar";
 /**
@@ -29,6 +30,8 @@ import Toast, {DURATION} from 'react-native-easy-toast'
  *
  * 方法调用时候，什么时候带括号，什么时候不带括号？ 方法要立马执行 就带括号，需要等到点击或者其它事件触发后执行就不带括号
  */
+
+import ArrayUtils from  '../../js/utils/ArrayUtils'
 export default class CustomKeyPage extends Component {
 
 
@@ -42,16 +45,20 @@ export default class CustomKeyPage extends Component {
                 {name: 'js', checked: false},
                 {name: 'java', checked: true},
                 {name: 'swift', checked: true},
-            ]
+            ],
+            orgArray: [],
         }
     }
-    componentDidMount=()=>{
-        //页面加载前查询数据
-        AsyncStorage.getItem('myPage_custom_key').then((value)=>{
-            if (value!==null){
-                this.setState({languages:JSON.parse(value)})
-            }
 
+    componentDidMount = () => {
+        //页面加载前查询数据
+        AsyncStorage.getItem('myPage_custom_key').then((value) => {
+            if (value !== null) {
+                var org = JSON.parse(value);
+                this.setState({languages: org})
+
+            }
+            this.setState({orgArray: ArrayUtils.clone(this.state.languages)});
         });
     }
     rightView = () => {
@@ -73,18 +80,41 @@ export default class CustomKeyPage extends Component {
             </TouchableOpacity>
         </View>
     }
-    backOnClick = () => {
+    goBack = () => {
+
         this.props.navigator.pop();
+    }
+    backOnClick = () => {
+        if (ArrayUtils.isEquerArray(this.state.orgArray, this.state.languages)) {
+            //this.refs.toast.show('same');
+            this.goBack();
+        } else {
+            Alert.alert('提示', '是否需要保存？', [
+                {
+                    text: '是', onPress: () => {
+                    this.saveSettings();
+                    this.goBack()
+                }
+                },
+                {
+                    text: '否', onPress: () => {
+                    this.goBack()
+                }
+                }
+            ]);
+        }
     }
     handleCheckBoxOnClick = (item) => {
         item.checked = !item.checked;//修改被点击item的checked的值
-        console.log(item)
     }
     //保存按钮点击事件
     saveSettings = () => {
         //AsyncStorage是一个简单的、异步的、持久化的Key-Value存储系统，它对于App来说是全局性的。它用来代替LocalStorage。个方法都会返回一个Promise对象。
-        AsyncStorage.setItem('myPage_custom_key',JSON.stringify(this.state.languages))
-            .then(()=>this.refs.toast.show('save suss'))
+        AsyncStorage.setItem('myPage_custom_key', JSON.stringify(this.state.languages))
+            .then(() => {
+                this.refs.toast.show('save suss');
+
+            })
 
     }
     /**
