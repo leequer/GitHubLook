@@ -32,9 +32,13 @@ export default class CustomKeyPage extends Component {
     }
 
     rightView = () => {
-        return <View style={styles.rightViewStyle}>
-            <Text style={{color: '#FFF', fontSize: 16}}>保存</Text>
-        </View>
+        return <TouchableOpacity
+            focusedOpacity={0.7}
+            onPress={this.saveSettings}>
+            <View style={styles.rightViewStyle}>
+                <Text style={{color: '#FFF', fontSize: 16}}>保存</Text>
+            </View>
+        </TouchableOpacity>
     }
     leftView = () => {
         return <View>
@@ -51,6 +55,10 @@ export default class CustomKeyPage extends Component {
     }
     handleCheckBoxOnClick = () => {
 
+    }
+    //保存按钮点击事件
+    saveSettings=()=>{
+        
     }
     renderCheckbox = (item) => {
         return (
@@ -80,17 +88,17 @@ export default class CustomKeyPage extends Component {
             </View>))
         }
         //奇数个
-        var mo = size%2;
-        if (mo!=0){
-            views.push((<View key={`view_${size-1}`} style={{flexDirection:'row'}}>
-                {this.renderCheckbox(this.state.languages[size-1])}
+        var mo = size % 2;
+        if (mo != 0) {
+            views.push((<View key={`view_${size - 1}`} style={{flexDirection: 'row'}}>
+                {this.renderCheckbox(this.state.languages[size - 1])}
                 <View style={styles.checkbox}></View>
             </View>))
-        }else{
+        } else {
             //偶数
-            views.push((<View key={`view_${size-1}`} style={{flexDirection:'row'}}>
-                {this.renderCheckbox(this.state.languages[size-2])}
-                {this.renderCheckbox(this.state.languages[size-1])}
+            views.push((<View key={`view_${size - 1}`} style={{flexDirection: 'row'}}>
+                {this.renderCheckbox(this.state.languages[size - 2])}
+                {this.renderCheckbox(this.state.languages[size - 1])}
             </View>))
         }
         return views;
@@ -120,7 +128,7 @@ const styles = StyleSheet.create({
     },
     checkbox: {
         flex: 1, padding: 10,
-        backgroundColor: '#E7E7E7'
+
     },
     rightViewStyle: {}
 });
