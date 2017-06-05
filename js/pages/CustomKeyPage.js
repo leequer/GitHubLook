@@ -58,12 +58,17 @@ export default class CustomKeyPage extends Component {
     }
     //保存按钮点击事件
     saveSettings=()=>{
-        
+
     }
     renderCheckbox = (item) => {
         return (
             <CheckBox
-                onClick={this.handleCheckBoxOnClick}
+                {/**
+                    重点1-----------
+                    这里如果这么写 onClick={this.handleCheckBoxOnClick（item）}，由于带了引号 表示立刻执行，
+                 但是，这个函数是在点击时才去调用，所以写成 onClick={()=>this.handleCheckBoxOnClick（item）}
+                 */}
+                onClick={()=>this.handleCheckBoxOnClick(item)}
 
                 style={styles.checkbox}
                 isChecked={item.checked}
