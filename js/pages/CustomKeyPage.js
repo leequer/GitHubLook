@@ -49,7 +49,9 @@ export default class CustomKeyPage extends Component {
             orgArray: [],
         }
     }
-
+    componentWillUnmount() {
+        this.state.languages=null;
+    }
     componentDidMount = () => {
         //页面加载前查询数据
         AsyncStorage.getItem('myPage_custom_key').then((value) => {
@@ -93,7 +95,7 @@ export default class CustomKeyPage extends Component {
                 {
                     text: '是', onPress: () => {
                     this.saveSettings();
-                    this.goBack()
+                    
                 }
                 },
                 {
