@@ -17,27 +17,31 @@ import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 export default class PopularPage extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         //这里是state  不是 statue
         this.state = {
-            languages : [ {name: 'android', checked: false},
-                {name: 'ios', checked: false},
-               ]
+            languages: [{name: 'android'},
+                {name: 'ios'},
+            ]
         };
 
+    }
+    componentWillUnmount() {
+        this.state.languages = null;
     }
     componentDidMount() {
         AsyncStorage.getItem('myPage_custom_key').then((value) => {
             if (value !== null) {
                 var org = JSON.parse(value);
-                this.setState({languages:org});
+                this.setState({languages: org});
             }
 
         });
     }
-    rightView=()=>{
-        return    <View style={styles.navigationBarRihgt}>
+
+    rightView = () => {
+        return <View style={styles.navigationBarRihgt}>
             <TouchableOpacity activeOpacity={0.7}>
                 <Image style={styles.icon}
                        source={require('../../res/images/ic_search_white_48pt.png')}/>
@@ -49,7 +53,8 @@ export default class PopularPage extends Component {
         </View>
 
     }
-    render(){
+
+    render() {
         return (
             <View style={styles.container}>
                 <NavigationBar title="最热"
@@ -59,13 +64,14 @@ export default class PopularPage extends Component {
                     tabBarBackgroundColor="#63b8ff"
                     tabBarActiveTextColor="#FFF"
                     tabBarInactiveTextColor="#F5FFFA"
-                    tabBarUnderlineStyle={[{backgroundColor:'#E7E7E7'},{height:2}]}
+                    tabBarUnderlineStyle={[{backgroundColor: '#E7E7E7'}, {height: 2}]}
                 >
 
 
                     {
-                        this.state.languages.map((item,i)=>{
-                            return (item.checked == undefined || item.checked) ? <PopularTab key={`tab${i}`} tabLabel={item.name}/> : null;
+                        this.state.languages.map((item, i) => {
+                            return (item.checked == undefined || item.checked) ?
+                                <PopularTab key={`tab${i}`} tabLabel={item.name}/> : null;
                         })
 
                     }
@@ -76,25 +82,27 @@ export default class PopularPage extends Component {
         )
     }
 }
-class PopularTab extends Component{
-    static defaultProps={
+class PopularTab extends Component {
+    static defaultProps = {
         //这个tabLabel 是<PopularTab tabLabel={item} key={`tab${i}`}/> 这个tablabel这个属性 相当于自定义属性
-        tabLabel : "ios"
+        tabLabel: "ios"
     }
-    constructor(props){
+
+    constructor(props) {
         super(props);
-        this.state={
-            dataSource : new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2}),
-            isRefreshing:true
+        this.state = {
+            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+            isRefreshing: true
         };
 
     }
+
     render() {
 
         return (
             <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(rowData) => <ProjectRow item ={rowData}/>}
+                renderRow={(rowData) => <ProjectRow item={rowData}/>}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.isRefreshing}
@@ -108,15 +116,19 @@ class PopularTab extends Component{
             />
         );
     }
-    //下拉刷新调用方法 刷新时 加载请求数据
-    handleRefresh=()=>{
-        this.loadData();
-    }
 
-    componentDidMount = () =>{
+    //下拉刷新调用方法 刷新时 加载请求数据
+    handleRefresh = () => {
         this.loadData();
     }
-    loadData = ()=>{
+    componentWillUnmount() {
+        this.state.dataSource=null;
+        this.state.isRefreshing = null;
+    }
+    componentDidMount = () => {
+        this.loadData();
+    }
+    loadData = () => {
         /**
          * fetch 请求回来的数据 传给了then 方法的response 参数，然后通过json（）方法转为json
          *   .then((response)=>{return response.json()})
@@ -130,21 +142,22 @@ class PopularTab extends Component{
          *
          */
         fetch(`https://api.github.com/search/repositories?q=${this.props.tabLabel}&sort=stars`)
-            .then((response)=>{return response.json()})
-            .then((json)=>{
+            .then((response) => {
+                return response.json()
+            })
+            .then((json) => {
                 //调用this.setState 就会重新给listview值 同时listview调用render方法刷新
                 this.setState({
-                    dataSource:this.state.dataSource.cloneWithRows(json.items)
+                    dataSource: this.state.dataSource.cloneWithRows(json.items)
                 });
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error)
             })
-            .done(()=>{
+            .done(() => {
                 //调用了this.setState 界面就会重新绘制 就会刷新   牢记
-                this.setState({isRefreshing:false})
+                this.setState({isRefreshing: false})
             })
-
 
 
     }
@@ -160,7 +173,7 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
     },
-    navigationBarRihgt:{
+    navigationBarRihgt: {
         flexDirection: 'row',
         justifyContent: 'center',
         marginRight: 8,
