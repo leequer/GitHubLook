@@ -10,7 +10,8 @@ import {
     Image,
     ListView,
     RefreshControl,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
@@ -18,12 +19,23 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 export default class PopularPage extends Component {
     constructor(props){
         super(props);
-        this.status = {
-            languages : ['java','ios','react','js']
+        //这里是state  不是 statue
+        this.state = {
+            languages : [ {name: 'android', checked: false},
+                {name: 'ios', checked: false},
+               ]
         };
 
     }
+    componentDidMount() {
+        AsyncStorage.getItem('myPage_custom_key').then((value) => {
+            if (value !== null) {
+                var org = JSON.parse(value);
+                this.setState({languages:org});
+            }
 
+        });
+    }
     rightView=()=>{
         return    <View style={styles.navigationBarRihgt}>
             <TouchableOpacity activeOpacity={0.7}>
@@ -52,10 +64,10 @@ export default class PopularPage extends Component {
 
 
                     {
-                        this.status.languages.map((item,i)=>{
-
-                            return <PopularTab tabLabel={item} key={`tab${i}`}/>
+                        this.state.languages.map((item,i)=>{
+                            return (item.checked == undefined || item.checked) ? <PopularTab key={`tab${i}`} tabLabel={item.name}/> : null;
                         })
+
                     }
 
 
