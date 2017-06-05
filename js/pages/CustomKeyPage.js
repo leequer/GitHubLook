@@ -113,7 +113,7 @@ export default class CustomKeyPage extends Component {
         AsyncStorage.setItem('myPage_custom_key', JSON.stringify(this.state.languages))
             .then(() => {
                 this.refs.toast.show('save suss');
-
+                this.setState({orgArray:ArrayUtils.clone(this.state.languages)});
             })
 
     }
