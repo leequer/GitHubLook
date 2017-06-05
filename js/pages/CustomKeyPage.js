@@ -8,10 +8,23 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 import NavigationBar from "../Component/NavigationBar";
+/**
+ * 复选框react-native-check-box
+ npm install react-native-check-box --save
+ import CheckBox from 'react-native-check-box'
+ */
 import CheckBox from "react-native-check-box";
+/**
+ * toast
+ npm i react-native-easy-toast --save
+ import Toast, {DURATION} from 'react-native-easy-toast'
+ https://github.com/crazycodeboy/react-native-easy-toast
+ */
+import Toast, {DURATION} from 'react-native-easy-toast'
 /**
  *
  * 方法调用时候，什么时候带括号，什么时候不带括号？ 方法要立马执行 就带括号，需要等到点击或者其它事件触发后执行就不带括号
@@ -53,22 +66,27 @@ export default class CustomKeyPage extends Component {
     backOnClick = () => {
         this.props.navigator.pop();
     }
-    handleCheckBoxOnClick = () => {
-
+    handleCheckBoxOnClick = (item) => {
+        item.checked = !item.checked;//修改被点击item的checked的值
+        console.log(item)
     }
     //保存按钮点击事件
-    saveSettings=()=>{
+    saveSettings = () => {
+        //AsyncStorage是一个简单的、异步的、持久化的Key-Value存储系统，它对于App来说是全局性的。它用来代替LocalStorage。个方法都会返回一个Promise对象。
+        AsyncStorage.setItem('myPage_custom_key',JSON.stringify(this.state.languages))
+            .then(()=>this.refs.toast.show('save suss'))
 
     }
+    /**
+     重点1-----------
+     这里如果这么写 onClick={this.handleCheckBoxOnClick（item）}，由于带了引号 表示立刻执行，
+     但是，这个函数是在点击时才去调用，所以写成 onClick={()=>this.handleCheckBoxOnClick（item）}
+     */
     renderCheckbox = (item) => {
         return (
             <CheckBox
-                {/**
-                    重点1-----------
-                    这里如果这么写 onClick={this.handleCheckBoxOnClick（item）}，由于带了引号 表示立刻执行，
-                 但是，这个函数是在点击时才去调用，所以写成 onClick={()=>this.handleCheckBoxOnClick（item）}
-                 */}
-                onClick={()=>this.handleCheckBoxOnClick(item)}
+
+                onClick={() => this.handleCheckBoxOnClick(item)}
 
                 style={styles.checkbox}
                 isChecked={item.checked}
@@ -116,6 +134,7 @@ export default class CustomKeyPage extends Component {
                                leftButton={this.leftView()}
                                rightButton={this.rightView()}/>
                 {this.renderCheckBoxView()}
+                <Toast ref="toast"/>
             </View>
         )
     }
