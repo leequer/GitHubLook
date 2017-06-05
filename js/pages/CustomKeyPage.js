@@ -30,6 +30,8 @@ import Toast, {DURATION} from 'react-native-easy-toast'
  * 方法调用时候，什么时候带括号，什么时候不带括号？ 方法要立马执行 就带括号，需要等到点击或者其它事件触发后执行就不带括号
  */
 export default class CustomKeyPage extends Component {
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +45,15 @@ export default class CustomKeyPage extends Component {
             ]
         }
     }
+    componentDidMount=()=>{
+        //页面加载前查询数据
+        AsyncStorage.getItem('myPage_custom_key').then((value)=>{
+            if (value!==null){
+                this.setState({languages:JSON.parse(value)})
+            }
 
+        });
+    }
     rightView = () => {
         return <TouchableOpacity
             focusedOpacity={0.7}
