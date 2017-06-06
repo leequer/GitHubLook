@@ -1,6 +1,8 @@
 /**
  * Created by liqing on 2017/6/6.
  */
+
+//-----------认识splice() 函数------------begin
 var a = ['a','b','c'];
 /**
  * splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
@@ -13,3 +15,4 @@ console.log(a);
 
 a.splice(2,1,'x');
 console.log(a);
+//-----------认识splice() 函数------------end
