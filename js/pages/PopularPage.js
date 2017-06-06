@@ -18,6 +18,7 @@ import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 var defaut_lans = require('../../res/data/popular_def_lans.json');
+
 export default class PopularPage extends Component {
     constructor(props) {
         super(props);
@@ -27,6 +28,7 @@ export default class PopularPage extends Component {
         };
 
     }
+
     componentWillUnmount() {
         this.state.languages = null;
 
@@ -74,7 +76,7 @@ export default class PopularPage extends Component {
                     {
                         this.state.languages.map((item, i) => {
                             return (item.checked == undefined || item.checked) ?
-                                <PopularTab key={`tab${i}`} tabLabel={item.name}/> : null;
+                                <PopularTab {...this.props} key={`tab${i}`} tabLabel={item.name}/> : null;
                         })
 
                     }
@@ -105,7 +107,7 @@ class PopularTab extends Component {
         return (
             <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(rowData) => <ProjectRow item={rowData}/>}
+                renderRow={(rowData) =>  <ProjectRow {...this.props} item={rowData}/>}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.isRefreshing}

@@ -13,6 +13,7 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
+import GithubProjectDetailsPage from '../pages/GithubProjectDetailsPage'
 export default class ProjectRow extends Component {
     /**
      * 在popularpage.js中的设置list中的item的每一项中的
@@ -23,11 +24,19 @@ export default class ProjectRow extends Component {
     static defaultProps = {
         item: {}
     }
-
+    goToDetails=()=>{
+        this.props.navigator.push({
+            component:GithubProjectDetailsPage
+        });
+    }
     render() {
         var item = this.props.item;
         var avatar_url = item.owner.avatar_url;
         return (
+            <TouchableOpacity
+                focusedOpacity={0.7}
+                onPress={this.goToDetails}
+            >
             <View style={styles.container}>
                 <Text style={styles.nameSytle}>{item.name}</Text>
                 <Text style={{color:'#757575'}}>{item.description}</Text>
@@ -45,6 +54,7 @@ export default class ProjectRow extends Component {
                     </View>
                 </View>
             </View>
+            </TouchableOpacity>
         )
     }
 }

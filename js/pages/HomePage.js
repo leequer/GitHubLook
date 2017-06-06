@@ -43,7 +43,7 @@ export default class HomePage extends Component {
 
                         {/*选项卡对应的页面*/}
                         <View style={{flex:1}}>
-                            <PopularPage/>
+                            <PopularPage {...this.props}/>
                         </View>
                     </TabNavigator.Item>
 
