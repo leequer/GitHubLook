@@ -24,9 +24,11 @@ export default class ProjectRow extends Component {
     static defaultProps = {
         item: {}
     }
-    goToDetails=()=>{
+    goToDetails=(obj)=>{
+        console.log(obj)
         this.props.navigator.push({
-            component:GithubProjectDetailsPage
+            component:GithubProjectDetailsPage,
+            params:{title:obj.full_name,url:obj.html_url}
         });
     }
     render() {
@@ -35,7 +37,7 @@ export default class ProjectRow extends Component {
         return (
             <TouchableOpacity
                 focusedOpacity={0.7}
-                onPress={this.goToDetails}
+                onPress={()=>this.goToDetails(item)}
             >
             <View style={styles.container}>
                 <Text style={styles.nameSytle}>{item.name}</Text>

@@ -16,7 +16,11 @@ import {
     DeviceEventEmitter
 } from 'react-native';
 export default class GithubProjectDetailsPage extends Component {
+    constructor(props) {
+        super(props);
+    }
     render(){
+        console.log(this.props.title+','+this.props.url);
         return (
             <View/>
         )

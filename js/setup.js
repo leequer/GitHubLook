@@ -17,7 +17,7 @@ export default function setup() {
             //传参
             //return <Target {...route.params} navigator={navigator}/>;
             //return <Target navigator={navigator}/>;
-            return <Target navigator={navigator}/>
+            return <Target {...route.params} navigator={navigator}/>
         }
 
         render() {
