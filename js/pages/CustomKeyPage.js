@@ -32,20 +32,14 @@ import Toast, {DURATION} from 'react-native-easy-toast'
  */
 
 import ArrayUtils from  '../../js/utils/ArrayUtils'
+var defaut_lans = require('../../res/data/popular_def_lans.json');
 export default class CustomKeyPage extends Component {
 
 
     constructor(props) {
         super(props);
         this.state = {
-            languages: [
-                {name: 'android', checked: false},
-                {name: 'ios', checked: false},
-                {name: 'react native', checked: false},
-                {name: 'js', checked: false},
-                {name: 'java', checked: true},
-                {name: 'swift', checked: true},
-            ],
+            languages: defaut_lans,
             orgArray: [],
         }
     }

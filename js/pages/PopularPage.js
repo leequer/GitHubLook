@@ -16,14 +16,13 @@ import {
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
+var defaut_lans = require('../../res/data/popular_def_lans.json');
 export default class PopularPage extends Component {
     constructor(props) {
         super(props);
         //这里是state  不是 statue
         this.state = {
-            languages: [{name: 'android'},
-                {name: 'ios'},
-            ]
+            languages: defaut_lans
         };
 
     }
