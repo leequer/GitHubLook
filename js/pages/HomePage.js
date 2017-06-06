@@ -9,7 +9,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    DeviceEventEmitter
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
@@ -96,6 +97,19 @@ export default class HomePage extends Component {
                 </TabNavigator>
             </View>
         );
+    }
+    componentDidMount(){
+        this.refreshListener = DeviceEventEmitter.addListener('popularPageRefresh',(n)=>{
+            this.props.navigator.resetTo({
+                //主页重新加载
+                //跳转到新的场景，并且重置整个路由栈
+                component: HomePage
+            });
+        })
+    }
+    componentWillUnmount(){
+
+        this.refreshListener.remove();
     }
 }
 

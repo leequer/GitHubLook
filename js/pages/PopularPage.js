@@ -11,7 +11,8 @@ import {
     ListView,
     RefreshControl,
     TouchableOpacity,
-    AsyncStorage
+    AsyncStorage,
+    DeviceEventEmitter
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import ProjectRow from '../../js/Component/ProjectRow.js';
@@ -28,6 +29,7 @@ export default class PopularPage extends Component {
     }
     componentWillUnmount() {
         this.state.languages = null;
+
     }
     componentDidMount() {
         AsyncStorage.getItem('myPage_custom_key').then((value) => {
@@ -37,6 +39,8 @@ export default class PopularPage extends Component {
             }
 
         });
+
+
     }
 
     rightView = () => {

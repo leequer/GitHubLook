@@ -10,7 +10,8 @@ import {
     Image,
     TouchableOpacity,
     AsyncStorage,
-    Alert
+    Alert,
+    DeviceEventEmitter
 } from 'react-native';
 import NavigationBar from "../Component/NavigationBar";
 /**
@@ -110,6 +111,7 @@ export default class CustomKeyPage extends Component {
             .then(() => {
                 this.refs.toast.show('save suss');
                 this.setState({orgArray:ArrayUtils.clone(this.state.languages)});
+                DeviceEventEmitter.emit("popularPageRefresh",'refresh')
             })
 
     }
