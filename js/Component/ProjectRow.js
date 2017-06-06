@@ -28,7 +28,7 @@ export default class ProjectRow extends Component {
         console.log(obj)
         this.props.navigator.push({
             component:GithubProjectDetailsPage,
-            params:{title:obj.full_name,url:obj.html_url}
+            params:{title:obj.name,url:obj.html_url}
         });
     }
     render() {
