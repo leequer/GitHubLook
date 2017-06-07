@@ -58,11 +58,15 @@ export default class PopularPage extends Component {
         </View>
 
     }
+    centerView=()=>{
+        return <Text style={styles.BarText}>最热</Text>
+    }
+
 
     render() {
         return (
             <View style={styles.container}>
-                <NavigationBar title="最热"
+                <NavigationBar centerView={this.centerView()}
                                rightButton={this.rightView()}/>
 
                 <ScrollableTabView
@@ -173,7 +177,10 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
-
+    BarText: {
+        fontSize: 18,
+        color: '#FFF'
+    },
     icon: {
         width: 24,
         height: 24,

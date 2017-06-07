@@ -56,11 +56,14 @@ export default class GithubProjectDetailsPage extends Component {
     onNavigationStateChange=(s)=>{
         this.setState({canGoBack:s.canGoBack});
     }
+    centerView=()=>{
+        return <Text style={styles.BarText}>{this.props.title}</Text>
+    }
     render() {
         console.log(this.props.title + ',' + this.props.url);
         return (
             <View style={styles.container}>
-                <NavigationBar title={this.props.title} leftButton={this.leftView()} rightButton={this.rightView()}/>
+                <NavigationBar centerView={this.centerView()} leftButton={this.leftView()} rightButton={this.rightView()}/>
                 <WebView
                     ref="webview"
                     startInLoadingState={true}
@@ -78,5 +81,10 @@ const styles = StyleSheet.create({
     icon:{
         width:12,
         height:12
-    }
+    },
+    BarText: {
+        fontSize: 18,
+        color: '#FFF'
+    },
+
 });

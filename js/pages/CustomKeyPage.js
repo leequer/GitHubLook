@@ -44,9 +44,11 @@ export default class CustomKeyPage extends Component {
             orgArray: [],
         }
     }
+
     componentWillUnmount() {
-        this.state.languages=null;
+        this.state.languages = null;
     }
+
     componentDidMount = () => {
         //页面加载前查询数据
         AsyncStorage.getItem('myPage_custom_key').then((value) => {
@@ -66,6 +68,9 @@ export default class CustomKeyPage extends Component {
                 <Text style={{color: '#FFF', fontSize: 16}}>保存</Text>
             </View>
         </TouchableOpacity>
+    }
+    centerView = () => {
+        return <Text style={styles.BarText}>偏好设置</Text>
     }
     leftView = () => {
         return <View>
@@ -90,7 +95,7 @@ export default class CustomKeyPage extends Component {
                 {
                     text: '是', onPress: () => {
                     this.saveSettings();
-                    
+
                 }
                 },
                 {
@@ -110,8 +115,8 @@ export default class CustomKeyPage extends Component {
         AsyncStorage.setItem('myPage_custom_key', JSON.stringify(this.state.languages))
             .then(() => {
                 this.refs.toast.show('save suss');
-                this.setState({orgArray:ArrayUtils.clone(this.state.languages)});
-                DeviceEventEmitter.emit("popularPageRefresh",'refresh')
+                this.setState({orgArray: ArrayUtils.clone(this.state.languages)});
+                DeviceEventEmitter.emit("popularPageRefresh", 'refresh')
             })
 
     }
@@ -168,7 +173,7 @@ export default class CustomKeyPage extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <NavigationBar title="偏好设置"
+                <NavigationBar centerView={this.centerView()}
                                leftButton={this.leftView()}
                                rightButton={this.rightView()}/>
                 {this.renderCheckBoxView()}
@@ -191,6 +196,10 @@ const styles = StyleSheet.create({
     checkbox: {
         flex: 1, padding: 10,
 
+    },
+    BarText: {
+        fontSize: 18,
+        color: '#FFF'
     },
     rightViewStyle: {}
 });

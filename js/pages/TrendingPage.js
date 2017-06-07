@@ -17,10 +17,13 @@ import {
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 export default class PopularPage extends Component {
+    centerView=()=>{
+        return <Text style={styles.BarText}>趋势</Text>
+    }
     render(){
         return (
             <View style={styles.container}>
-                <NavigationBar title="趋势"/>
+                <NavigationBar centerView={this.centerView()}/>
             </View>
         )
     }
@@ -28,5 +31,9 @@ export default class PopularPage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    BarText: {
+        fontSize: 18,
+        color: '#FFF'
     },
 });

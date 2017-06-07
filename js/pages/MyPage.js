@@ -20,10 +20,13 @@ export default class MyPage extends Component {
              component:CustomKeyPage
         });
     }
+    centerView=()=>{
+        return <Text style={styles.BarText}>我的</Text>
+    }
     render(){
         return (
             <View style={styles.container}>
-                <NavigationBar title="我的"/>
+                <NavigationBar centerView={this.centerView()}/>
                 <TouchableOpacity activeOpacity={0.7}
                                   onPress={this.gotoCustumePage}>
                 <View style={styles.itemSytle}>
@@ -46,6 +49,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         backgroundColor:'#E7E7E7',
 
-    }
+    },
+    BarText: {
+        fontSize: 18,
+        color: '#FFF'
+    },
 
 });

@@ -14,13 +14,9 @@ import {
 } from 'react-native';
 
 export default class NavigationBar extends Component {
-    static  defaultProps = {
-        title: '',
-    }
+
 
     render() {
-        var title = this.props.title;
-
         return (
             <View style={styles.container}>
                 <StatusBar hidden={Platform.OS === 'ios' ? false : true}
@@ -29,8 +25,8 @@ export default class NavigationBar extends Component {
                     <View style={styles.leftViewStyle}>
                         {this.props.leftButton}
                     </View>
-                    <View style={styles.navigationBarText}>
-                        <Text style={styles.BarText}>{title}</Text>
+                    <View style={styles.navigationBarCenterViewStyle}>
+                        {this.props.centerView}
                     </View>
                     <View style={styles.navigationBarRihgt}>
                           {this.props.rightButton}
@@ -48,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#63b8ff',
         padding: 5
     },
-    navigationBarText: {
+    navigationBarCenterViewStyle: {
         //中间文字编辑剧中-begin
         flexDirection: 'column',
         alignItems: 'center', //交叉轴
@@ -60,10 +56,7 @@ const styles = StyleSheet.create({
         //backgroundColor:'#f00'
 
     },
-    BarText: {
-        fontSize: 18,
-        color: '#FFF'
-    },
+
     navigationBar: {
         flexDirection: 'row',
         justifyContent: 'space-between', //等分
