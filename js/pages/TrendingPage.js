@@ -17,7 +17,6 @@ import {
 } from 'react-native';
 import NavigationBar from '../../js/Component/NavigationBar.js';
 import GitHubTrending from 'GitHubTrending';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TrendingRow from '../../js/Component/TrendingRow';
 var defaut_lans = require('../../res/data/popular_def_lans.json');
 export default class PopularPage extends Component {
@@ -39,7 +38,7 @@ export default class PopularPage extends Component {
             focusedOpacity={0.7}>
             <View style={{flexDirection: 'row'}}>
                 <Text style={styles.BarText}>趋势</Text>
-                <Image source={require('../../res/images/ic_spinner_triangle.png')} style={{height: 20, width: 20}}/>
+                <Image source={require('../../res/images/ic_spinner_triangle.png')} style={{height: 12, width: 12,marginLeft:10}}/>
             </View>
         </TouchableOpacity>
     }
@@ -48,24 +47,8 @@ export default class PopularPage extends Component {
         return (
             <View style={styles.container}>
                 <NavigationBar centerView={this.centerView()}/>
-                <ScrollableTabView
-                    tabBarBackgroundColor="#63b8ff"
-                    tabBarActiveTextColor="#FFF"
-                    tabBarInactiveTextColor="#F5FFFA"
-                    tabBarUnderlineStyle={[{backgroundColor: '#E7E7E7'}, {height: 2}]}
-                >
 
-
-                    {
-                        this.state.languages.map((item, i) => {
-                            return (item.checked == undefined || item.checked) ?
-                                <TrendingTab {...this.props} key={`tab${i}`} tabLabel={item.name}/> : null;
-                        })
-
-                    }
-
-
-                </ScrollableTabView>
+                <TrendingTab {...this.props} tabLabel={'ios'}/>
             </View>
         )
     }
@@ -119,10 +102,10 @@ class TrendingTab extends Component {
     loadData = () => {
         new GitHubTrending().fetchTrending(`https://github.com/trending/${this.props.tabLabel}?since=daily`)
             .then(value=>{
+                console.log(value);
                 //更新dataSource
                 this.setState({
                     dataSource:this.state.dataSource.cloneWithRows(value),
-
                 });
             }).catch((error) => {
             console.error(error);
