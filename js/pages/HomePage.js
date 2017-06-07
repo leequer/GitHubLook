@@ -16,6 +16,7 @@ import {
 import TabNavigator from 'react-native-tab-navigator';
 import PopularPage from '../../js/pages/PopularPage.js';
 import MyPage from "./MyPage";
+import TrendingPage from './TrendingPage';
 
 export default class HomePage extends Component {
     constructor(props){
@@ -58,7 +59,7 @@ export default class HomePage extends Component {
                         renderSelectedIcon={
                         ()=> <Image style={[styles.icon,{tintColor:'#63b8ff'}]} source={require('../../res/images/ic_trending.png')}/>
                         }>
-                        <Image source={{uri:'https://img3.doubanio.com/view/movie_poster_cover/mpst/public/p2263582212.jpg'}}  style={{height:100,width:100}} />
+                        <TrendingPage/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         title="收藏"
